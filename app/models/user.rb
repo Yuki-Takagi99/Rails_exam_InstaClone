@@ -5,4 +5,6 @@ class User < ApplicationRecord
   before_validation { email.downcase! } #バリデーション判定前にemail属性を強制的に小文字に変換
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
+  has_many :posts
+  has_many :favorites, dependent: :destroy
 end

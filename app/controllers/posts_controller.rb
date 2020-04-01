@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     @post = Post.new
   end
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     if params[:back]
       render :new
     else
@@ -19,6 +19,7 @@ class PostsController < ApplicationController
     end
   end
   def show
+    @favorite = current_user.favorites.find_by(post_id: @post.id)
   end
   def edit
   end
@@ -34,7 +35,7 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice: "ポストを削除しました！"
   end
   def confirm
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     render :new if @post.invalid? #バリデーションに失敗したとき、新規投稿画面に戻る
   end
   private
