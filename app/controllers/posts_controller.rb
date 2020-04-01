@@ -4,7 +4,11 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
   def new
-    @post = Post.new
+    if params[:back]
+      @post = Post.new(post_params)
+    else
+      @post = Post.new
+    end
   end
   def create
     @post = current_user.posts.build(post_params)
@@ -40,7 +44,7 @@ class PostsController < ApplicationController
   end
   private
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :image, :image_cache)
   end
   def set_post
     @post = Post.find(params[:id])

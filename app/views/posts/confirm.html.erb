@@ -4,6 +4,11 @@
   <%= form.hidden_field :content %>
   <p>タイトル:<%= @post.title %></p>
   <p>本文:<%= @post.content %></p>
+  <p>画像:<%= image_tag(@post.image.url) if @post.image && @post.image.url %></p>
+  <%= form.hidden_field :image_cache %>
   <%= form.submit "登録する" %>
-  <%= form.submit "ポスト一覧画面に戻る", name: 'back' %>
+<% end %>
+<%= form_with(model: @post, url:new_post_path, local:true, method:"get") do |form| %>
+  <%= form.hidden_field :image_cache %>
+  <%= form.submit "戻る", name: "back" %>
 <% end %>

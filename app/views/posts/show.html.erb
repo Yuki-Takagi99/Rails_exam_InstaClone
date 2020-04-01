@@ -1,6 +1,13 @@
 <h1>post詳細</h1>
 <p>タイトル: <%= @post.title %></p>
 <p>感想: <%= @post.content %></p>
+<p>画像:
+  <% if @post.image.url.present? %>
+  <%= image_tag @post.image.url %>
+<% else %>
+  <%= '画像なし' %>
+<% end %></p>
+
 <% unless @post.user_id == current_user.id %>
   <% if @favorite.present? %>
     <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
