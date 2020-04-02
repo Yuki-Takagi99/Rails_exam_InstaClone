@@ -1,3 +1,5 @@
+<h1>ログイン中のユーザーは「<%= current_user.name %>」です！</h1>
+<%= link_to '新規投稿', new_post_path, class: 'btn btn-primary' %>
 <h1>投稿一覧</h1>
 <p><%= notice %></p>
 <table>
@@ -7,7 +9,7 @@
     <th>画像</th>
     <th>投稿ユーザー</th>
   </tr>
-<% @posts.each do |post| %>
+  <% @posts.each do |post| %>
   <tr>
     <td><%= post.title %></td>
     <td><%= post.content %></td>
@@ -18,8 +20,9 @@
     <% end %>
     <td><%= post.user.name %></td>
     <td><%= link_to '詳細を表示する', post_path(post.id) %></td>
-    <td><%= link_to "内容を編集する", edit_post_path(post.id) %></td>
-    <td><%= link_to '内容を削除する', post_path(post.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+    <% if current_user.name == post.user.name %> 
+      <td><%= link_to "内容を編集する", edit_post_path(post.id) %></td>
+      <td><%= link_to '内容を削除する', post_path(post.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+    <% end %>
   </tr>
-<% end %>
-<%= link_to '新規投稿', new_post_path %>
+  <% end %>

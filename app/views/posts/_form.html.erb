@@ -9,22 +9,31 @@
       </ul>
     </div>
   <% end %>
-  <div class="post_title">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="form-group">
+    <%= form.label :title, 'タイトル' %>
+    <%= form.text_field :title, class: 'form-control' %>
+    <small id="poster-tip" class="form-text text-muted">
+      鑑賞した作品のタイトルを入力してください。
+    </small>
   </div>
-  <div class="post_title">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
+  <div class="form-group">
+    <%= form.label :content, '感想' %>
+    <%= form.text_area :content, class: 'form-control', rows:10 %>
+    <small id="content-tip" class="form-text text-muted">
+    作品の感想を入力してください。
+    </small>
   </div>
-  <div class="field">
-    <%= form.label :image %>
+  <div class="form-group">
+    <%= form.label :image, '画像' %>
     <%= image_tag(@post.image.url) if @post.image && @post.image.url %>
     <%= form.file_field :image %>
     <%= form.hidden_field :image_cache %>
   </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "投稿する", class: 'btn btn-primary btn-block' %>
+    <small id="submit-tip" class="form-text text-muted">
+    投稿する前に内容を確認してください。
+    </small>
   </div>
 <% end %>
-<%= link_to "投稿一覧画面にもどる", posts_path %>
+<%= link_to "ポスト一覧画面にもどる", posts_path, class: 'btn btn-info' %>

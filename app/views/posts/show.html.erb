@@ -1,19 +1,21 @@
-<h1>post詳細</h1>
-<p>タイトル: <%= @post.title %></p>
-<p>感想: <%= @post.content %></p>
-<p>画像:
-  <% if @post.image.url.present? %>
-  <%= image_tag @post.image.url %>
-<% else %>
-  <%= '画像なし' %>
-<% end %></p>
-
-<% unless @post.user_id == current_user.id %>
-  <% if @favorite.present? %>
-    <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
-  <% else %>
-    <%= link_to 'お気に入りする', favorites_path(post_id: @post.id), method: :post, class: 'btn btn-primary' %>
-  <% end %>
-<% end %>
-
+<h1>ポスト詳細</h1>
+<div class="card border-primary">
+  <img class="card-img-top">
+    <% if @post.image.url.present? %>
+      <%= image_tag @post.image.url %>
+    <% else %>
+      <%= image_tag 'default.png' %>
+    <% end %>
+  <div class="card-body">
+    <h5 class="card-title">作品タイトル：<%= @post.title %></h5>
+    <p class="card-text">感想：<%= @post.content %></p>
+    <% unless @post.user_id == current_user.id %>
+      <% if @favorite.present? %>
+        <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+      <% else %>
+        <%= link_to 'お気に入りする', favorites_path(post_id: @post.id), method: :post, class: 'btn btn-primary' %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 <%= link_to "ポスト一覧画面にもどる", posts_path, class: 'btn btn-info' %>
