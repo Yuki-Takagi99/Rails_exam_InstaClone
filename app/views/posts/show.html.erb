@@ -15,3 +15,5 @@
     <%= link_to 'お気に入りする', favorites_path(post_id: @post.id), method: :post, class: 'btn btn-primary' %>
   <% end %>
 <% end %>
+
+<%= link_to "ポスト一覧画面にもどる", posts_path, class: 'btn btn-info' %>
