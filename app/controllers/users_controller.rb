@@ -7,10 +7,10 @@ class UsersController < ApplicationController
     if @user.save #保存できていたら
       flash[:success] = '新しいユーザーを登録しました。'
       session[:user_id] = @user.id
-      redirect_to user_path(@user.id)
+      redirect_to user_path(@user.id) #ユーザ詳細画面に遷移
     else
       flash.now[:danger] = 'ユーザーの登録に失敗しました。'
-      render :new
+      render :new #ユーザ登録画面に遷移
     end
   end
   def show
@@ -23,10 +23,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
       if @user.update(user_params)
         flash[:success] = 'ユーザー情報を編集しました！'
-        redirect_to user_path(@user.id)
+        redirect_to user_path(@user.id) #ユーザ詳細画面に遷移
       else
         flash.now[:danger] = 'ユーザー情報の編集に失敗しました。'
-        render :edit
+        render :edit #ユーザ編集画面に遷移
       end
   end
   private
