@@ -1,4 +1,10 @@
 <h1>ユーザープロフィール</h1>
 <h1><%= @user.name %>のページ</h1>
 <p>メールアドレス: <%= @user.email %></p>
+<p>プロフィール画像:
+  <% if @user.image.url.present? %>
+    <%= image_tag @user.image.url %>
+  <% else %>
+    <%= '画像なし' %>
+  <% end %></p>
 <%= link_to "投稿一覧画面にもどる", posts_path %>
