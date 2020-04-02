@@ -11,7 +11,11 @@
   <tr>
     <td><%= post.title %></td>
     <td><%= post.content %></td>
-    <td><img src="<%= post.image %>"></td>
+    <% if post.image.url.present? %>
+      <td><img src="<%= post.image %>"></td>
+    <% else %>
+      <td><%= image_tag 'default.png' %></td>
+    <% end %>
     <td><%= post.user.name %></td>
     <td><%= link_to '詳細を表示する', post_path(post.id) %></td>
     <td><%= link_to "内容を編集する", edit_post_path(post.id) %></td>
