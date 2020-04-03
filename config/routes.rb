@@ -10,4 +10,5 @@ Rails.application.routes.draw do
     get :favorite_index, on: :member
   end
   resources :favorites, only: [:create, :destroy]
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

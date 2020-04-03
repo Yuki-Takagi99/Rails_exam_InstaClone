@@ -1,0 +1,9 @@
+<h1>新規ポストが完了しました！</h1>
+<h4>新規ポスト内容は以下の通りです・・・</h4>
+<p>タイトル: <%= @post.title %></p>
+<p>感想: <%= @post.content %></p>
+<% if @post.image.url.present? %>
+  <p>画像:<img src="<%= @post.image %>"></p>
+<% else %>
+  <p>画像:イメージはありません</p>
+<% end %>

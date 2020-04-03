@@ -17,6 +17,7 @@ class PostsController < ApplicationController
       render :new
     else
       if @post.save
+        PostMailer.post_mail(@post).deliver ##新規投稿確認メール送信処理
         redirect_to posts_path, notice: "新規ポストしました！"
       else
         render :new
