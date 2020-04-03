@@ -9,6 +9,7 @@
   <div class="card-body">
     <h5 class="card-title">作品タイトル：<%= @post.title %></h5>
     <p class="card-text">感想：<%= @post.content %></p>
+    <p class="card-text">投稿ユーザ：<%= @post.user.name %></p>
     <% unless @post.user_id == current_user.id %>
       <% if @favorite.present? %>
         <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>

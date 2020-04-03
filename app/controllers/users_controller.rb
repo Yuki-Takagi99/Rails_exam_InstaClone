@@ -30,6 +30,9 @@ class UsersController < ApplicationController
         render :edit #ユーザ編集画面に遷移
       end
   end
+  def favorite_index
+    @favorite = current_user.favorite_posts.all #現在のユーザのお気に入りポストを取得
+  end
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :image, :image_cache)

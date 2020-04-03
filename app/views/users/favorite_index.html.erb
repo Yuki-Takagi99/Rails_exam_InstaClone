@@ -1,7 +1,4 @@
-<h1>ログイン中のユーザーは「<%= current_user.name %>」です！</h1>
-<%= link_to '新規投稿', new_post_path, class: 'btn btn-primary' %>
-<h1>投稿一覧</h1>
-<p><%= notice %></p>
+<h1>お気に入りポスト一覧</h1>
 <table>
   <tr>
     <th>タイトル</th>
@@ -9,7 +6,7 @@
     <th>画像</th>
     <th>投稿ユーザー</th>
   </tr>
-  <% @posts.each do |post| %>
+  <% @favorite.each do |post| %>
   <tr>
     <td><%= post.title %></td>
     <td><%= post.content %></td>
