@@ -14,3 +14,17 @@
  *= require_tree .
  *= require_self
  */
+.jumbotron {
+  position: relative;
+  height: 50vh;
+  background: url("film-banner.png") left;
+  background-size: cover;
+}
+.jumbotron h1 {
+  color: #FFFFFF;
+  text-align: right;
+}
+.jumbotron p {
+  color: #ffffff;
+  text-align: right;
+}

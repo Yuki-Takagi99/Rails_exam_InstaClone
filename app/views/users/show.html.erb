@@ -2,7 +2,6 @@
 <% if current_user == @user %>
   <%= link_to "プロフィールを編集する", edit_user_path, class: 'btn btn-primary' %>
 <% end %>
-<%= link_to "投稿一覧画面にもどる", posts_path, class: 'btn btn-primary'%>
 <%= link_to "お気に入りポスト一覧", favorite_index_user_path, class: 'btn btn-primary'%>
 <h1><%= @user.name %>のページ</h1>
 <p>メールアドレス: <%= @user.email %></p>
@@ -12,7 +11,6 @@
   <% else %>
     <%= image_tag 'default.png' %>
   <% end %></p>
-
 <h1><%= @user.name %>のポスト一覧</h1>
 <table>
   <tr>
