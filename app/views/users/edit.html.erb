@@ -1,4 +1,6 @@
-<h1>新規ユーザー編集</h1>
+<div class="page-header text-primary text-center">
+  <h2>プロフィールの編集</h2>
+</div>
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
@@ -15,20 +17,20 @@
     <%= f.text_field :name, class: 'form-control' %>
   </div>
   <div class="form-group">
-  <%= f.label :email, 'メールアドレス' %>
-  <%= f.email_field :email, class: 'form-control' %>
+    <%= f.label :email, 'メールアドレス' %>
+    <%= f.email_field :email, class: 'form-control' %>
   </div>
   <div class="form-group">
-  <%= f.label :password, 'パスワード' %>
-  <%= f.password_field :password, class: 'form-control' %>
+    <%= f.label :password, 'パスワード' %>
+    <%= f.password_field :password, class: 'form-control' %>
   </div>
   <div class="form-group">
-  <%= f.label :password_confirmation, 'パスワード(もう1度ご入力下さい)' %>
-  <%= f.password_field :password_confirmation, class: 'form-control' %>
+    <%= f.label :password_confirmation, 'パスワード(もう1度ご入力下さい)' %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
   <div class="form-group">
-  <%= f.label :image, "ユーザー画像" %>
-  <%= f.file_field :image %>
+    <%= f.label :image, "ユーザー画像" %>
+    <%= f.file_field :image %>
   </div>
   <%= f.submit "プロフィール編集を完了する", class: 'btn btn-primary btn-block' %>
 <% end %>

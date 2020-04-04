@@ -1,35 +1,65 @@
 <div class="page-header text-primary text-center">
   <h2><%= @user.name %>のページ</h2>
 </div>
-<% if current_user == @user %>
-  <%= link_to "プロフィールを編集する", edit_user_path, class: 'btn btn-primary' %>
-<% end %>
-<%= link_to "お気に入りポスト一覧", favorite_index_user_path, class: 'btn btn-primary'%>
-<p>メールアドレス: <%= @user.email %></p>
-<p>プロフィール画像:
-  <% if @user.image.url.present? %>
-    <%= image_tag @user.image.url %>
-  <% else %>
-    <%= image_tag 'default.png' %>
-  <% end %></p>
-<h1><%= @user.name %>のポスト一覧</h1>
-<table>
-  <tr>
-    <th>タイトル</th>
-    <th>感想</th>
-    <th>画像</th>
-    <th>投稿ユーザー</th>
-  </tr>
-  <% @user.posts.each do |post| %>
-  <tr>
-    <td><%= post.title %></td>
-    <td><%= post.content %></td>
-      <% if post.image.url.present? %>
-    <td><img src="<%= post.image %>" class="img-responsive"></td>
-      <% else %>
-    <td><%= image_tag 'default.png' %></td>
+<div class="container">
+  <div class="row">
+    <table width="100" height="300" class="table table-bordered table-condensed table-responsive">
+      <tr>
+        <th>プロフィール画像</th>
+        <th>ユーザー名</th>
+        <th>メールアドレス</th>
+        <th>パスワード</th>
+      </tr>
+      <tr height="200">
+        <td><% if @user.image.url.present? %>
+              <%= image_tag @user.image.url, class: "img-responsive" %>
+            <% else %>
+              <%= image_tag 'default.png' %>
+            <% end %></td>
+        <td><%= @user.name %></td>
+        <td><%= @user.email %></td>
+        <td>*****</td>
+      </tr>
+    </table>
+      <% if current_user == @user %>
+        <%= link_to "プロフィールを編集する", edit_user_path, class: 'btn btn-primary' %>
       <% end %>
-    <td><%= post.user.name %></td>
-  </tr>
-</table>
-<% end %>
+      <%= link_to "お気に入りポスト一覧", favorite_index_user_path, class: 'btn btn-info'%>
+  </div>
+</div>
+
+<h1 class="page-header text-primary text-center"><%= @user.name %>のポスト一覧</h1>
+<% @user.posts.each do |post| %>
+<div class="pt-5 bg-light">
+  <div class="container">
+    <div class="row row-eq-height">
+      <div class="col-lg-6 mb-5">
+        <div class="panel panel-default lg-6 box-shadow" style="max-width: 100rem; height: 120rem;">
+          <div class="panel-heading" style="height: 80rem;">
+            <% if post.image.url.present? %>
+              <img class="img-responsive center-block" src="<%= post.image %>" alt="panel image cap" style="width: 100%; height: 100%;">
+            <% else %>
+              <%= image_tag 'default.png', class: "img-responsive", size: '658x900' %>
+            <% end %>
+          </div>
+          <div class="panel-body" style="height: 35rem;">
+            <h5 class="panel-title"><%= post.title %></h5>
+            <p class="panel-text"><%= post.content %></p>
+            <p class="panel-text">@<%= post.user.name %></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <%= link_to 'View', post_path(post.id), class: 'btn btn-primary' %>
+              <% if current_user.name == post.user.name %>
+                <%= link_to "edit", edit_post_path(post.id), class: 'btn btn-success' %>
+                <%= link_to 'delete', post_path(post.id), method: :delete, data: { confirm: '削除します。よろしいですか？' }, class: 'btn btn-danger' %>
+              <% end %>
+            </div>
+          </div>
+          <div class="panel-footer" style="height: 5rem;">
+              <small class="text-muted"><%= post.updated_at %><small>
+          </div>
+        </div>
+      </div>
+  <% end %>
+    </div>
+  </div>
+</div>

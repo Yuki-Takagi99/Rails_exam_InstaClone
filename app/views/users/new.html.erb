@@ -1,6 +1,9 @@
-<h1>新規登録</h1>
+<div class="page-header text-primary text-center">
+  <h2>新規登録</h2>
+</div>
+
 <% if @user.errors.any? %>
-  <div id="error_explanation">
+  <div id="error_explanation", class="alert alert-danger">
     <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
     <ul>
     <% @user.errors.full_messages.each do |message| %>
@@ -10,27 +13,26 @@
   </div>
 <% end %>
 <%= form_with(model: @user, local: true) do |f| %>
-
   <div class="form-group">
     <%= f.label :name, 'ユーザー名' %>
     <%= f.text_field :name, class: 'form-control' %>
   </div>
   <div class="form-group">
-  <%= f.label :email, 'メールアドレス' %>
-  <%= f.email_field :email, class: 'form-control' %>
+    <%= f.label :email, 'メールアドレス' %>
+    <%= f.email_field :email, class: 'form-control' %>
   </div>
   <div class="form-group">
-  <%= f.label :password, 'パスワード' %>
-  <%= f.password_field :password, class: 'form-control' %>
+    <%= f.label :password, 'パスワード' %>
+    <%= f.password_field :password, class: 'form-control' %>
   </div>
   <div class="form-group">
-  <%= f.label :password_confirmation, 'パスワード(もう1度ご入力下さい)' %>
-  <%= f.password_field :password_confirmation, class: 'form-control' %>
+    <%= f.label :password_confirmation, 'パスワード(もう1度ご入力下さい)' %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
   <div class="form-group">
-  <%= f.label :image, "ユーザー画像" %>
-  <%= f.file_field :image %>
-  <%= f.hidden_field :image_cache %>
+    <%= f.label :image, "ユーザー画像" %>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
   </div>
   <%= f.submit "アカウントを作成する", class: 'btn btn-primary btn-block' %>
 <% end %>
