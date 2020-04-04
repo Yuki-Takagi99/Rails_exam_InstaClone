@@ -1,21 +1,37 @@
-<h1>ポスト詳細</h1>
-<div class="card border-primary">
-  <img class="card-img-top">
-    <% if @post.image.url.present? %>
-      <%= image_tag @post.image.url %>
-    <% else %>
-      <%= image_tag 'default.png' %>
-    <% end %>
-  <div class="card-body">
-    <h5 class="card-title">作品タイトル：<%= @post.title %></h5>
-    <p class="card-text">感想：<%= @post.content %></p>
-    <p class="card-text">投稿ユーザ：<%= @post.user.name %></p>
-    <% unless @post.user_id == current_user.id %>
-      <% if @favorite.present? %>
-        <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
-      <% else %>
-        <%= link_to 'お気に入りする', favorites_path(post_id: @post.id), method: :post, class: 'btn btn-primary' %>
-      <% end %>
-    <% end %>
+<div class="page-header text-primary text-center">
+  <h2>ポスト詳細</h2>
+</div>
+<div class="pt-5 bg-light">
+  <div class="container">
+    <div class="row row-eq-height">
+      <div class="col-lg-6 mb-5">
+        <div class="panel panel-default lg-6 box-shadow" style="max-width: 100rem; height: 120rem;">
+          <div class="panel-heading" style="height: 80rem;">
+            <% if @post.image.url.present? %>
+              <img class="img-responsive center-block" src="<%= @post.image %>" alt="panel image cap" style="width: 100%; height: 100%;">
+            <% else %>
+              <%= image_tag 'default.png', class: "img-responsive", size: '658x900' %>
+            <% end %>
+          </div>
+          <div class="panel-body" style="height: 35rem;">
+            <h5 class="panel-title"><%= @post.title %></h5>
+            <p class="panel-text"><%= @post.content %></p>
+            <p class="panel-text">@<%= @post.user.name %></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <% unless @post.user_id == current_user.id %>
+                <% if @favorite.present? %>
+                  <%= link_to 'いいね！を解除', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+                <% else %>
+                  <%= link_to 'いいね！', favorites_path(post_id: @post.id), method: :post, class: 'btn btn-primary' %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+          <div class="panel-footer" style="height: 5rem;">
+            <small class="text-muted"><%= @post.updated_at %><small>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
