@@ -1,14 +1,31 @@
-<h3>以下の内容で、送信する。</h3>
+<div class="page-header text-primary text-center">
+  <h2>以下の内容で、ポストします。</h2>
+</div>
+
 <%= form_with(model: @post, url: posts_path, local: true) do |form| %>
-  <%= form.hidden_field :title %>
-  <%= form.hidden_field :content %>
-  <p>タイトル:<%= @post.title %></p>
-  <p>本文:<%= @post.content %></p>
-  <p>画像:<%= image_tag(@post.image.url) if @post.image && @post.image.url %></p>
-  <%= form.hidden_field :image_cache %>
-  <%= form.submit "登録する" %>
+<div class="pt-5 bg-light">
+  <div class="container">
+    <div class="row row-eq-height">
+      <div class="col-lg-6 mb-5">
+        <div class="panel panel-default lg-6 box-shadow" style="max-width: 100rem; height: 120rem;">
+          <div class="panel-heading" style="height: 80rem;">
+            <%= image_tag(@post.image.url) if @post.image && @post.image.url %>
+           <%= form.hidden_field :image_cache %>
+          </div>
+          <div class="panel-body" style="height: 40rem;">
+            <h5 class="panel-title"><%= @post.title %></h5>
+            <%= form.hidden_field :title %>
+            <p class="panel-text"><%= @post.content %></p>
+            <%= form.hidden_field :content %>
+            <%= form.submit "ポストする", class: "btn btn-success" %>
 <% end %>
-<%= form_with(model: @post, url:new_post_path, local:true, method:"get") do |form| %>
-  <%= form.hidden_field :image_cache %>
-  <%= form.submit "戻る", name: "back" %>
-<% end %>
+            <%= form_with(model: @post, url:new_post_path, local:true, method:"get") do |form| %>
+            <%= form.hidden_field :image_cache %>
+            <%= form.submit "戻る", name: "back", class: "btn btn-info" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,10 @@
-<h1>ユーザープロフィール</h1>
+<div class="page-header text-primary text-center">
+  <h2><%= @user.name %>のページ</h2>
+</div>
 <% if current_user == @user %>
   <%= link_to "プロフィールを編集する", edit_user_path, class: 'btn btn-primary' %>
 <% end %>
 <%= link_to "お気に入りポスト一覧", favorite_index_user_path, class: 'btn btn-primary'%>
-<h1><%= @user.name %>のページ</h1>
 <p>メールアドレス: <%= @user.email %></p>
 <p>プロフィール画像:
   <% if @user.image.url.present? %>
