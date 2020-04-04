@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
   def create
-    @user = User.new(user_params) #user_paramsでcPOSTデータをチェック
+    @user = User.new(user_params) #user_paramsでPOSTデータをチェック
     if @user.save #保存できていたら
       flash[:success] = '新しいユーザーを登録しました。'
       session[:user_id] = @user.id
