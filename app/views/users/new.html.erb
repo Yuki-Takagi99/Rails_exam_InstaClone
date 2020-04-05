@@ -4,7 +4,7 @@
 
 <% if @user.errors.any? %>
   <div id="error_explanation", class="alert alert-danger">
-    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
+    <h2><%= pluralize(@user.errors.count, "error") %>  <%= @user.name %> が発生しました。</h2>
     <ul>
     <% @user.errors.full_messages.each do |message| %>
       <li><%= message %></li>
